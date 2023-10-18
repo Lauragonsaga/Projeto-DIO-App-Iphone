@@ -1,36 +1,62 @@
+<? versão xml = " 1.0 " codificação = " UTF-8 " ?>
+< tipo de módulo  = " JAVA_MODULE " versão = " 4 " > 
+  < nome do componente  = " NewModuleRootManager " inherit-compiler-output = " true " > 
+    < excluir saída />
+    < content  url = " arquivo://$MODULE_DIR$ " >
+      < sourceFolder  url = " file://$MODULE_DIR$/src "  isTestSource = " false " />
+    </ conteúdo >
+    < orderEntry  type = " herdadoJdk " />
+    < orderEntry  type = " sourceFolder "  forTests = " false " />
+  </ componente >
+</ módulo >
+ 14 alterações: 14 adições e 0 exclusões14 
+orientação-a-objetos-e-uml/src/aparelho/Main.java
+@@ -0,0 +1,14 @@
+pacote  aparelho ;
 
-import java.util.Scanner;
+importar  aparelho . reproduzirmusical . ReprodutorMusical ;
 
-public class Desafio01 {
+ classe  pública Principal {
 
-    public static void main(String[] args) {
-        try (// Lendo os dados de Entrada:
-        Scanner scanner = new Scanner(System.in)) {
-            int numeroConta = scanner.nextInt();
-            scanner.nextLine(); // Consome a quebra de linha após a entrada do número da conta
-            String nomeTitular = scanner.nextLine();
-            double saldo = scanner.nextDouble();
+  public  static  void  main ( String [] args ) {
+    ReprodutorMusical  aparelho = novo  ReprodutorMusical ( "Los Hermanos." );
+    aparelho . selecionarMúsica ();
+    aparelho . tocar ();
+    aparelho . pausa ();
+  }
 
-            // Criar uma instância de "ContaBancaria" com os valores de Entrada.
-            ContaBancaria conta = new ContaBancaria(numeroConta, nomeTitular, saldo);
-
-            System.out.println("Informacoes:");
-            // Imprimir as informações da conta usando o objeto criado acima.
-            System.out.println("Conta: " + conta.numero);
-            System.out.println("Titular: " + conta.titular);
-            System.out.println("Saldo: R$ " + conta.saldo);
-        }
-    }
 }
+ 31 alterações: 31 adições e 0 exclusões31 
+orientacao-a-objetos-e-uml/src/aparelho/reprodutormusical/ReproducaoAbst.java
+@@ -0,0 +1,31 @@
+pacote  aparelho . reproduzirmusical ;
 
-class ContaBancaria {
-    int numero;
-    String titular;
-    double saldo;
+importar  aparelho . reproduzirmusical . ReproduçãoIntfc ;
 
-    public ContaBancaria(int numero, String titular, double saldo) {
-        this.numero = numero;
-        this.titular = titular;
-        this.saldo = saldo;
-    }
+ classe abstrata  pública ReproducaoAbst implementa ReproducaoIntfc {   
+
+   String  protegida nome ;
+
+  public  ReproduçãoAbst ( String  nome ) {
+    isso . nome = nome ;
+  }
+
+  @ Substituir
+  public  void  tocar () {
+    Sistema . fora . println ( nome + "está tocando" );
+  }
+
+  @ Substituir
+  public  void  pausa (){
+    Sistema . fora . println ( nome + "pausada!" );
+  }
+
+  @ Substituir
+  public  void  selecionarMúsica () {
+    Sistema . fora . println ( nome + "selecionado" );
+  }
+
+  public  String  getNome (){
+    retornar  nome ;
+  }
 }
